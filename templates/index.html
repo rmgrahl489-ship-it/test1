@@ -105,7 +105,8 @@
 <body>
 
 <!-- Music (starts on first tap anywhere) -->
-<audio id="music" loop preload="auto">
+<!-- Music (mobile-safe: starts ONLY after explicit user tap) -->
+<audio id="music" loop preload="auto" playsinline>
   <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_64c1b1d3f7.mp3" type="audio/mpeg">
 </audio>
 
