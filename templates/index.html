@@ -8,122 +8,148 @@
 <style>
 body{
   margin:0;
-  font-family:Georgia,serif;
-  background:#140a12;
-  color:white;
+  font-family:'Georgia',serif;
+  background:linear-gradient(180deg,#2b0f1a,#12070c);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+.section{
+  min-height:100vh;
+  padding:32px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  overflow:hidden;
 }
-.page{display:none;padding:24px}
-.page.active{display:block}
-h1{font-size:2rem}
-p{font-size:1.1rem;line-height:1.7}
-button{
-  margin-top:24px;
-  padding:14px 30px;
-  font-size:1.1rem;
-  border:none;
-  border-radius:30px;
-  background:#ffb3c6;
+
+h1{
+  font-size:2.2rem;
+  margin-bottom:14px;
 }
-.no{
-  position:absolute;
-  background:#ff4d6d;
-  color:white;
+
+p{
+  font-size:1.15rem;
+  line-height:1.8;
+  max-width:520px;
 }
+
 img{
   width:90%;
-  max-width:320px;
+  max-width:340px;
   border-radius:18px;
-  margin:16px 0;
+  box-shadow:0 14px 35px rgba(0,0,0,0.4);
+  margin:22px 0;
 }
+
+button{
+  margin-top:26px;
+  padding:14px 36px;
+  font-size:1.1rem;
+  border:none;
+  border-radius:40px;
+  background:#ffb3c6;
+  color:#000;
+}
+
 .heart{
-  position:absolute;
+  position:fixed;
   bottom:-20px;
-  animation:rise linear infinite;
+  font-size:1.6rem;
+  animation:floatUp linear infinite;
+  pointer-events:none;
 }
-@keyframes rise{
-  to{transform:translateY(-120vh)}
+
+@keyframes floatUp{
+  to{transform:translateY(-120vh);opacity:0}
 }
+
+/* Letter */
 .envelope{
   background:#fff;
   color:#2b0015;
-  border-radius:16px;
-  padding:20px;
-  max-width:300px;
-  margin:0 auto;
+  border-radius:18px;
+  padding:22px;
+  max-width:320px;
+  cursor:pointer;
+  box-shadow:0 16px 40px rgba(0,0,0,0.4);
 }
-#letter{display:none;font-style:italic}
+
+.letter{
+  display:none;
+  margin-top:16px;
+  font-style:italic;
+  line-height:1.8;
+}
 </style>
 </head>
 <body>
 
-<audio id="music" preload="auto" playsinline>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_64c1b1d3f7.mp3" type="audio/mpeg">
-</audio>
-
-<div class="page active" id="p1">
-  <h1>Hi Preeti ❤️</h1>
-  <p>Tap the button below.<br>Music will start.</p>
-  <button onclick="start()">Start 💖</button>
+<!-- SECTION 1 -->
+<div class="section">
+  <h1>Preeti ❤️</h1>
+  <img src="/mnt/data/0ba1e7c4-9c27-48ac-aadd-5ac71aee77d3.png" alt="Love letter guide">
+  <p>
+    Love letters were never meant to be loud.<br>
+    They are meant to be felt — quietly,<br>
+    like a hand finding yours.
+  </p>
 </div>
 
-<div class="page" id="p2">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" />
-  <p>Some feelings fall softly,<br>like autumn leaves.</p>
-  <button onclick="show(3)">Next</button>
+<!-- SECTION 2 -->
+<div class="section">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Autumn love">
+  <h1>Some love falls gently 🍂</h1>
+  <p>
+    Like autumn leaves drifting down,<br>
+    it arrives softly and stays warm.
+  </p>
 </div>
 
-<div class="page" id="p3">
-  <img src="https://images.unsplash.com/photo-1500534314209-a26db0f5b03d" />
-  <p>Some feelings grow roots 🌳</p>
-  <button onclick="show(4)">Continue</button>
+<!-- SECTION 3 -->
+<div class="section">
+  <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a" alt="Dog love">
+  <h1>Some love has a wagging tail 🐶</h1>
+  <p>
+    Loyal. Honest. Pure.<br>
+    Even this little one wanted to help me ask you.
+  </p>
 </div>
 
-<div class="page" id="p4">
-  <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a" />
-  <h1>Will you be my Valentine?</h1>
-  <button onclick="show(5)">YES</button>
-  <button class="no" id="no">NO</button>
+<!-- SECTION 4 -->
+<div class="section">
+  <img src="https://images.unsplash.com/photo-1525253086316-d0c936c814f8" alt="Dog proposal">
+  <h1>A small proposal 💌</h1>
+  <p>
+    Imagine this pup walking up to you…<br>
+    gently holding a letter meant only for you.
+  </p>
 </div>
 
-<div class="page" id="p5">
-  <h1>A Letter For You 💌</h1>
+<!-- SECTION 5 -->
+<div class="section">
+  <h1>A Letter For You</h1>
   <div class="envelope" onclick="openLetter()">
     Tap to open
-    <div id="letter">
+    <div class="letter" id="letter">
       <p>
-        Somewhere between laughter<br>
-        and silence,<br><br>
-        you became my home.<br>
-        Loving you feels gentle,<br>
-        honest, and right.
+        I didn’t plan this feeling.<br>
+        It simply happened — quietly,<br>
+        honestly.
+        <br><br>
+        Somewhere between smiles and moments,<br>
+        you became my favorite place to be.
+        <br><br>
+        And if love is choosing someone<br>
+        every single day —
+        I choose you.
       </p>
     </div>
   </div>
 </div>
 
 <script>
-function start(){
-  const m=document.getElementById('music');
-  m.play().then(()=>{
-    show(2);
-  }).catch(()=>{
-    alert('Please tap again with volume on ❤️');
-  });
-}
-
-function show(n){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('p'+n).classList.add('active');
-}
-
-const no=document.getElementById('no');
-no.onmouseover=no.ontouchstart=function(){
-  no.style.left=Math.random()*70+'vw';
-  no.style.top=Math.random()*70+'vh';
-}
-
 function openLetter(){
   document.getElementById('letter').style.display='block';
 }
@@ -133,11 +159,11 @@ function heart(){
   h.className='heart';
   h.innerText=['❤️','💖','💕','🌹'][Math.floor(Math.random()*4)];
   h.style.left=Math.random()*100+'vw';
-  h.style.animationDuration=4+Math.random()*4+'s';
+  h.style.animationDuration=4+Math.random()*5+'s';
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8000);
+  setTimeout(()=>h.remove(),9000);
 }
-setInterval(heart,400);
+setInterval(heart,450);
 </script>
 
 </body>
