@@ -6,14 +6,14 @@
   <title>For Preeti ❤️</title>
 
   <style>
-    * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    * { box-sizing: border-box; font-family: 'Georgia', serif; }
 
     body {
       margin: 0;
       height: 100vh;
       overflow: hidden;
-      background: radial-gradient(circle at top, #ff8fab, #ff477e);
-      color: white;
+      background: linear-gradient(180deg, #1a0f1f, #3a0f2e);
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -23,118 +23,157 @@
     .screen {
       position: absolute;
       width: 100%;
-      padding: 24px;
+      padding: 26px;
       display: none;
-      animation: fadeIn 1s ease;
+      animation: fade 1.2s ease;
     }
-
     .active { display: block; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
-      font-size: 2.4rem;
-      font-weight: 900;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
     }
 
     p {
       font-size: 1.15rem;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
     button {
-      margin-top: 32px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      padding: 14px 34px;
-      border-radius: 999px;
+      margin-top: 34px;
+      font-size: 1.1rem;
+      padding: 14px 36px;
+      border-radius: 40px;
       border: none;
+      background: #ffb3c6;
+      color: #000;
       cursor: pointer;
     }
 
-    .next { background: #ffd166; }
-    .yes { background: #06d6a0; }
-
     .no {
-      background: #ef476f;
+      background: #ff4d6d;
+      color: white;
       position: absolute;
     }
 
+    /* Floating hearts */
     .heart {
       position: absolute;
       bottom: -10vh;
       font-size: 1.6rem;
       animation: floatUp linear infinite;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     @keyframes floatUp {
-      from { transform: translateY(0); }
       to { transform: translateY(-120vh); }
     }
 
-    .letter {
-      background: rgba(255,255,255,0.15);
-      border-radius: 20px;
+    /* Letter */
+    .envelope {
+      width: 260px;
+      margin: 0 auto;
+      background: #fef0f5;
+      color: #2b0015;
+      border-radius: 16px;
       padding: 22px;
-      backdrop-filter: blur(6px);
-      font-style: italic;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      animation: pulse 2s infinite;
     }
 
-    .stickers { font-size: 1.8rem; margin-top: 10px; }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .poem {
+      display: none;
+      font-style: italic;
+      margin-top: 16px;
+      font-size: 1.05rem;
+    }
   </style>
 </head>
 <body>
 
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c3b1a2e9a.mp3" type="audio/mpeg">
+<!-- Music (starts on first tap anywhere) -->
+<audio id="music" loop preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_64c1b1d3f7.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Screen 1 -->
-<div class="screen active" id="s1">
-  <h1>Hey Preeti 🌸</h1>
-  <p>Before I ask you anything… I want you to feel how special you are to me ✨</p>
-  <button class="next" onclick="startMusic(); go(2)">Next 💖</button>
+<div class="screen active" id="s1" onclick="startMusic()">
+  <h1>Preeti,</h1>
+  <p>
+    Some people don’t arrive loudly.<br>
+    They enter quietly… and suddenly,<br>
+    your heart feels different forever.
+  </p>
+  <button onclick="go(2)">Continue</button>
 </div>
 
 <!-- Screen 2 -->
-<div class="screen" id="s2">
-  <h1>A Little Truth ❤️</h1>
-  <p>Some people slowly become home to your heart…<br>and you did that without even trying.</p>
-  <button class="next" onclick="go(3)">Tell me more 💕</button>
+<div class="screen" id="s2" onclick="startMusic()">
+  <h1>A Confession</h1>
+  <p>
+    Loving you wasn’t a decision.<br>
+    It was something my soul did<br>
+    before my mind could stop it.
+  </p>
+  <button onclick="go(3)">One more thing</button>
 </div>
 
 <!-- Screen 3 -->
-<div class="screen" id="s3">
-  <h1>Preeti 💘</h1>
-  <p>Will you be my Valentine and walk with me through all the little moments life gives us? 🌹</p>
-  <button class="yes" onclick="go(4)">YES 💍</button>
-  <button class="no" id="no">NO 🙈</button>
+<div class="screen" id="s3" onclick="startMusic()">
+  <h1>Will you be my Valentine?</h1>
+  <p>
+    Not just for a day…<br>
+    but for every quiet moment,<br>
+    every laugh, every tomorrow.
+  </p>
+  <button onclick="go(4)">YES</button>
+  <button class="no" id="no">NO</button>
 </div>
 
 <!-- Screen 4 -->
-<div class="screen" id="s4">
-  <h1>For You, With Love 💖</h1>
-  <div class="letter">
-    <p>“I seem to have loved you in numberless forms, numberless times,<br>
-    in life after life, in age after age, forever.”</p>
-    <p>— Rabindranath Tagore</p>
+<div class="screen" id="s4" onclick="startMusic()">
+  <h1>A Letter For You 💌</h1>
+  <div class="envelope" onclick="openLetter(event)">
+    Tap to open
+    <div class="poem">
+      <p>
+        I don’t promise perfection.<br>
+        I promise presence.<br><br>
+        A hand to hold on heavy days,<br>
+        a smile meant only for you,<br>
+        and a heart that chose you—<br>
+        again and again.
+      </p>
+    </div>
   </div>
-  <div class="stickers">💖✨🌹💘🕊️</div>
 </div>
 
 <script>
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted) {
+      document.getElementById('music').play().catch(()=>{});
+      musicStarted = true;
+    }
+  }
+
   function go(n) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('s' + n).classList.add('active');
-  }
-
-  function startMusic() {
-    document.getElementById('music').play();
   }
 
   const noBtn = document.getElementById('no');
@@ -145,17 +184,23 @@
     };
   }
 
+  function openLetter(e) {
+    e.stopPropagation();
+    const poem = document.querySelector('.poem');
+    poem.style.display = 'block';
+  }
+
   function spawnHeart() {
     const h = document.createElement('div');
     h.className = 'heart';
-    h.innerText = ['❤️','💖','💘','💕','🌹'][Math.floor(Math.random()*5)];
+    h.innerText = ['❤️','💖','💕','🌹'][Math.floor(Math.random()*4)];
     h.style.left = Math.random() * 100 + 'vw';
-    h.style.animationDuration = 4 + Math.random() * 4 + 's';
+    h.style.animationDuration = 4 + Math.random() * 5 + 's';
     document.body.appendChild(h);
-    setTimeout(() => h.remove(), 8000);
+    setTimeout(() => h.remove(), 9000);
   }
 
-  setInterval(spawnHeart, 320);
+  setInterval(spawnHeart, 350);
 </script>
 
 </body>
