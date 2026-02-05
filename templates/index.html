@@ -1,122 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Preeti ❤️</title>
 
 <style>
-*{box-sizing:border-box;font-family:'Georgia',serif}
 body{
-  margin:0;overflow:hidden;height:100vh;
-  background:linear-gradient(180deg,#2b0f1a,#12070c);
-  color:#fff;text-align:center
+  margin:0;
+  font-family:Georgia,serif;
+  background:#140a12;
+  color:white;
+  text-align:center;
+  overflow:hidden;
 }
-.screen{display:none;padding:22px;animation:fade 1s ease}
-.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(30px)}to{opacity:1}}
-h1{font-size:2.1rem;margin-bottom:14px}
-p{font-size:1.1rem;line-height:1.8}
+.page{display:none;padding:24px}
+.page.active{display:block}
+h1{font-size:2rem}
+p{font-size:1.1rem;line-height:1.7}
 button{
-  padding:14px 34px;border-radius:30px;border:none;
-  font-size:1.1rem;margin-top:26px;
-  background:#ffb3c6;color:#000
+  margin-top:24px;
+  padding:14px 30px;
+  font-size:1.1rem;
+  border:none;
+  border-radius:30px;
+  background:#ffb3c6;
 }
-.no{position:absolute;background:#ff4d6d;color:#fff}
-
-/* hearts */
-.heart{position:absolute;bottom:-10vh;font-size:1.6rem;animation:floatUp linear infinite}
-@keyframes floatUp{to{transform:translateY(-120vh)}}
-
-/* images */
-img.scene{width:90%;max-width:320px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.4);margin:16px 0}
-
-/* letter */
+.no{
+  position:absolute;
+  background:#ff4d6d;
+  color:white;
+}
+img{
+  width:90%;
+  max-width:320px;
+  border-radius:18px;
+  margin:16px 0;
+}
+.heart{
+  position:absolute;
+  bottom:-20px;
+  animation:rise linear infinite;
+}
+@keyframes rise{
+  to{transform:translateY(-120vh)}
+}
 .envelope{
-  background:#fff;color:#2b0015;
-  border-radius:16px;padding:22px;
-  max-width:300px;margin:0 auto;
-  box-shadow:0 12px 30px rgba(0,0,0,.4)
+  background:#fff;
+  color:#2b0015;
+  border-radius:16px;
+  padding:20px;
+  max-width:300px;
+  margin:0 auto;
 }
-.letter{display:none;margin-top:14px;font-style:italic}
+#letter{display:none;font-style:italic}
 </style>
 </head>
 <body>
 
-<!-- MUSIC -->
-<audio id="music" preload="auto" loop playsinline>
-<source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_64c1b1d3f7.mp3" type="audio/mpeg">
+<audio id="music" preload="auto" playsinline>
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_64c1b1d3f7.mp3" type="audio/mpeg">
 </audio>
 
-<!-- SCREEN 1 -->
-<div class="screen active" id="s1">
-<h1>Hi Preeti ❤️</h1>
-<p>Before anything…<br>tap below and let the moment begin.</p>
-<button onclick="startExperience()">▶ Play with Love</button>
+<div class="page active" id="p1">
+  <h1>Hi Preeti ❤️</h1>
+  <p>Tap the button below.<br>Music will start.</p>
+  <button onclick="start()">Start 💖</button>
 </div>
 
-<!-- SCREEN 2 -->
-<div class="screen" id="s2">
-<img class="scene" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" />
-<h1>Some feelings fall slowly…</h1>
-<p>Like autumn leaves,<br>they land softly on the heart.</p>
-<button onclick="go(3)">Continue</button>
+<div class="page" id="p2">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" />
+  <p>Some feelings fall softly,<br>like autumn leaves.</p>
+  <button onclick="show(3)">Next</button>
 </div>
 
-<!-- SCREEN 3 -->
-<div class="screen" id="s3">
-<img class="scene" src="https://images.unsplash.com/photo-1500534314209-a26db0f5b03d" />
-<h1>And some grow roots 🌳</h1>
-<p>Strong, quiet, steady…<br>just like love.</p>
-<button onclick="go(4)">One question</button>
+<div class="page" id="p3">
+  <img src="https://images.unsplash.com/photo-1500534314209-a26db0f5b03d" />
+  <p>Some feelings grow roots 🌳</p>
+  <button onclick="show(4)">Continue</button>
 </div>
 
-<!-- SCREEN 4 -->
-<div class="screen" id="s4">
-<img class="scene" src="https://images.unsplash.com/photo-1517849845537-4d257902454a" />
-<h1>Will you be my Valentine?</h1>
-<p>(Even the dogs are cheering 🐶💕)</p>
-<button onclick="go(5)">YES</button>
-<button class="no" id="no">NO</button>
+<div class="page" id="p4">
+  <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a" />
+  <h1>Will you be my Valentine?</h1>
+  <button onclick="show(5)">YES</button>
+  <button class="no" id="no">NO</button>
 </div>
 
-<!-- SCREEN 5 -->
-<div class="screen" id="s5">
-<h1>A Letter For You 💌</h1>
-<div class="envelope" onclick="openLetter()">
-Tap to open
-<div class="letter" id="letter">
-<p>
-I don’t know when it happened.<br>
-But somewhere between small talks<br>
-and quiet smiles…<br><br>
-You became my favorite thought.<br>
-And loving you felt natural,<br>
-like breathing.
-</p>
-</div>
-</div>
+<div class="page" id="p5">
+  <h1>A Letter For You 💌</h1>
+  <div class="envelope" onclick="openLetter()">
+    Tap to open
+    <div id="letter">
+      <p>
+        Somewhere between laughter<br>
+        and silence,<br><br>
+        you became my home.<br>
+        Loving you feels gentle,<br>
+        honest, and right.
+      </p>
+    </div>
+  </div>
 </div>
 
 <script>
-let musicStarted=false;
-function startExperience(){
+function start(){
   const m=document.getElementById('music');
-  m.volume=0.7;
   m.play().then(()=>{
-    musicStarted=true;go(2);
-  }).catch(()=>{alert('Please tap again ❤️')});
+    show(2);
+  }).catch(()=>{
+    alert('Please tap again with volume on ❤️');
+  });
 }
-function go(n){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('s'+n).classList.add('active');
+
+function show(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
 }
+
 const no=document.getElementById('no');
-if(no){no.onmouseover=no.ontouchstart=()=>{
+no.onmouseover=no.ontouchstart=function(){
   no.style.left=Math.random()*70+'vw';
   no.style.top=Math.random()*70+'vh';
-}}
-function openLetter(){document.getElementById('letter').style.display='block'}
+}
+
+function openLetter(){
+  document.getElementById('letter').style.display='block';
+}
+
 function heart(){
   const h=document.createElement('div');
   h.className='heart';
@@ -124,9 +135,10 @@ function heart(){
   h.style.left=Math.random()*100+'vw';
   h.style.animationDuration=4+Math.random()*4+'s';
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8000)
+  setTimeout(()=>h.remove(),8000);
 }
 setInterval(heart,400);
 </script>
+
 </body>
 </html>
