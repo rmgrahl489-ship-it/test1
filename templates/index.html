@@ -3,79 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valentine Proposal</title>
+  <title>For Preeti 💖</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+    * { box-sizing: border-box; font-family: 'Arial', sans-serif; }
 
     body {
       margin: 0;
       height: 100vh;
       overflow: hidden;
-      background: linear-gradient(135deg, #ff5f9e, #ff8acb);
+      background: linear-gradient(135deg, #ff4d6d, #ff85a2);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 900;
+    .screen {
+      position: absolute;
+      width: 100%;
       padding: 20px;
+      display: none;
+    }
+
+    .active { display: block; }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
     }
 
     button {
+      margin-top: 30px;
       font-size: 1.2rem;
       font-weight: bold;
-      padding: 12px 28px;
+      padding: 14px 32px;
       border-radius: 30px;
       border: none;
-      margin: 10px;
+      cursor: pointer;
     }
 
-    #yes {
-      background: #00ff9c;
-    }
+    .yes { background: #00ff9c; }
+    .next { background: #ffd166; }
 
-    #no {
+    .no {
       background: #ff2e63;
-      color: white;
       position: absolute;
     }
 
     .heart {
       position: absolute;
+      bottom: -10vh;
       font-size: 1.5rem;
-      animation: float 7s linear infinite;
-      opacity: 0.7;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
     }
 
-    @keyframes float {
-      from { top: 100vh; }
-      to { top: -10vh; }
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120vh); }
     }
   </style>
 </head>
-
 <body>
 
-  <div id="main">
-    <h1>PREETI, WILL YOU BE MY VALENTINE? ❤️</h1>
-    <button id="yes">YES</button>
-    <button id="no">NO</button>
+  <!-- Screen 1 -->
+  <div class="screen active" id="s1">
+    <h1>Hey Preeti 💕</h1>
+    <p>I made this little surprise just for you…<br>because you make my world brighter every single day ✨</p>
+    <button class="next" onclick="go(2)">Next 💖</button>
   </div>
 
-  <script>
-    const noBtn = document.getElementById("no");
+  <!-- Screen 2 -->
+  <div class="screen" id="s2">
+    <h1>There’s something I want to ask you…</h1>
+    <p>Something that makes my heart beat faster every time I think about it ❤️</p>
+    <button class="next" onclick="go(3)">Tell me 😍</button>
+  </div>
 
-    function moveNo() {
-      noBtn.style.left = Math.random() * 80 + "vw";
-      noBtn.style.top = Math.random() * 80 + "vh";
-    }
+  <!-- Screen 3 -->
+  <div class="screen" id="s3">
+    <h1>PREETI 💘</h1>
+    <p>Will you be my Valentine and make this day (and my life) even more special? 🌹</p>
+    <button class="yes" onclick="go(4)">YES 💍</button>
+    <button class="no" id="no">NO 🙈</button>
+  </div>
 
-    noBtn.addEv
+  <!-- Screen 4 -->
+  <div class="screen" id="s4">
+    <h1>I KNEW YOU’D SAY YES 💖💖💖</h1>
+    <p>You just made me the happiest person ever 😘</p>
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="260">
+  </div>
+
+<script>
+  function go(n) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('s' + n).classList.add('active');
+  }
+
+  const noBtn = document.getElementById('no');
+  if (noBtn) {
+    noBtn.onmouseover = noBtn.ontouchstart = () => {
+      noBtn.style.left = Math.random() * 70 + 'vw';
+      noBtn.style.top = Math.random() * 70 + 'vh';
+    };
+  }
+
+  function spawnHeart() {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.innerText = ['❤️','💖','💘','💕'][Math.floor(Math.random()*4)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDuration = 4 + Math.random() * 4 + 's';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 8000);
+  }
+
+  setInterval(spawnHeart, 350);
+</script>
+
+</body>
+</html>
