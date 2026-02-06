@@ -6,46 +6,43 @@
 <title>For Preeti ❤️</title>
 
 <style>
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:'Georgia',serif;
   background:linear-gradient(180deg,#2b0f1a,#12070c);
   color:#fff;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
-.section{
+.page{
+  display:none;
   min-height:100vh;
-  padding:32px 18px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  padding:28px 18px;
   text-align:center;
+  animation:fade 0.9s ease;
+}
+.page.active{display:block}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-h1{
-  font-size:2.2rem;
-  margin-bottom:14px;
-}
-
-p{
-  font-size:1.15rem;
-  line-height:1.8;
-  max-width:520px;
-}
+h1{font-size:2.2rem;margin-bottom:14px}
+p{font-size:1.15rem;line-height:1.8;max-width:520px;margin:0 auto}
 
 img{
   width:90%;
   max-width:340px;
   border-radius:18px;
-  box-shadow:0 14px 35px rgba(0,0,0,0.4);
   margin:22px 0;
+  box-shadow:0 14px 35px rgba(0,0,0,0.4);
 }
 
 button{
-  margin-top:26px;
-  padding:14px 36px;
+  margin-top:30px;
+  padding:14px 38px;
   font-size:1.1rem;
   border:none;
   border-radius:40px;
@@ -53,8 +50,14 @@ button{
   color:#000;
 }
 
+.no{
+  position:absolute;
+  background:#ff4d6d;
+  color:white;
+}
+
 .heart{
-  position:fixed;
+  position:absolute;
   bottom:-20px;
   font-size:1.6rem;
   animation:floatUp linear infinite;
@@ -72,84 +75,73 @@ button{
   border-radius:18px;
   padding:22px;
   max-width:320px;
+  margin:0 auto;
   cursor:pointer;
-  box-shadow:0 16px 40px rgba(0,0,0,0.4);
 }
 
-.letter{
-  display:none;
-  margin-top:16px;
-  font-style:italic;
-  line-height:1.8;
-}
+.letter{display:none;margin-top:16px;font-style:italic;line-height:1.8}
 </style>
 </head>
 <body>
 
-<!-- SECTION 1 -->
-<div class="section">
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
   <h1>Preeti ❤️</h1>
-  <img src="/mnt/data/0ba1e7c4-9c27-48ac-aadd-5ac71aee77d3.png" alt="Love letter guide">
+  <img src="/mnt/data/0ba1e7c4-9c27-48ac-aadd-5ac71aee77d3.png" />
   <p>
-    Love letters were never meant to be loud.<br>
-    They are meant to be felt — quietly,<br>
-    like a hand finding yours.
+    This isn’t just a page.<br>
+    It’s four little surprises — one after another.
   </p>
+  <button onclick="go(2)">Start 💕</button>
 </div>
 
-<!-- SECTION 2 -->
-<div class="section">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Autumn love">
-  <h1>Some love falls gently 🍂</h1>
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" />
+  <h1>A small messenger 🐶</h1>
   <p>
-    Like autumn leaves drifting down,<br>
-    it arrives softly and stays warm.
+    He’s been waiting patiently…<br>
+    carrying something special just for you.
   </p>
+  <button onclick="go(3)">Open surprise</button>
 </div>
 
-<!-- SECTION 3 -->
-<div class="section">
-  <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a" alt="Dog love">
-  <h1>Some love has a wagging tail 🐶</h1>
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <img src="https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif" />
+  <h1>Love finds its way</h1>
   <p>
-    Loyal. Honest. Pure.<br>
-    Even this little one wanted to help me ask you.
+    Even with muddy paws and a wagging tail,<br>
+    some messages always reach the heart.
   </p>
+  <button onclick="go(4)">One last thing</button>
 </div>
 
-<!-- SECTION 4 -->
-<div class="section">
-  <img src="https://images.unsplash.com/photo-1525253086316-d0c936c814f8" alt="Dog proposal">
-  <h1>A small proposal 💌</h1>
-  <p>
-    Imagine this pup walking up to you…<br>
-    gently holding a letter meant only for you.
-  </p>
-</div>
-
-<!-- SECTION 5 -->
-<div class="section">
-  <h1>A Letter For You</h1>
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <h1>A Letter For You 💌</h1>
   <div class="envelope" onclick="openLetter()">
     Tap to open
     <div class="letter" id="letter">
       <p>
-        I didn’t plan this feeling.<br>
-        It simply happened — quietly,<br>
-        honestly.
+        I don’t know when you became this important.<br>
+        But now, even ordinary moments
+        feel warmer because of you.
         <br><br>
-        Somewhere between smiles and moments,<br>
-        you became my favorite place to be.
-        <br><br>
-        And if love is choosing someone<br>
-        every single day —
-        I choose you.
+        If love is choosing someone
+        without needing a reason —
+        then I choose you.
       </p>
     </div>
   </div>
 </div>
 
 <script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
 function openLetter(){
   document.getElementById('letter').style.display='block';
 }
