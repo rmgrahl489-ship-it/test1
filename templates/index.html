@@ -3,179 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Sahithi ❤️</title>
+<title>For My Sahithi ❤️</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:'Georgia',serif;
-  background:linear-gradient(180deg,#2b0f1a,#12070c);
-  color:#fff;
-  overflow:hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.page{
-  display:none;
-  min-height:100vh;
-  padding:30px 20px;
-  text-align:center;
-  animation:fade 1s ease;
-}
-.page.active{display:block}
+body {
+  font-family: 'Segoe UI', serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
 
-@keyframes fade{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-h1{font-size:2.2rem;margin-bottom:15px}
-p{font-size:1.1rem;line-height:1.8;max-width:520px;margin:0 auto}
-
-button{
-  margin-top:30px;
-  padding:14px 38px;
-  font-size:1.1rem;
-  border:none;
-  border-radius:40px;
-  background:#ffb3c6;
-  color:#000;
-  cursor:pointer;
-  transition:0.3s;
+  /* === BEAUTIFUL ANIMATED GRADIENT BACKGROUND === */
+  background: linear-gradient(-45deg, #1a0a14, #4a1428, #2d0a1f, #6a1b3a);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
 }
 
-button:hover{transform:scale(1.05)}
-
-.no{
-  position:absolute;
-  background:#ff4d6d;
-  color:white;
+/* Soft glowing overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,0,120,0.15), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(255,0,90,0.15), transparent 40%);
+  z-index: -1;
 }
 
-.heart{
-  position:absolute;
-  bottom:-20px;
-  font-size:1.6rem;
-  animation:floatUp linear infinite;
-  pointer-events:none;
+/* Glass Card */
+.container {
+  text-align: center;
 }
 
-@keyframes floatUp{
-  to{transform:translateY(-120vh);opacity:0}
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 600px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  animation: fadeIn 1.2s ease;
 }
 
-/* Letter */
-.envelope{
-  background:#fff;
-  color:#2b0015;
-  border-radius:18px;
-  padding:25px;
-  max-width:330px;
-  margin:0 auto;
-  cursor:pointer;
-  transition:0.4s;
-}
-.envelope:hover{transform:scale(1.03)}
-
-.letter{
-  display:none;
-  margin-top:15px;
-  font-style:italic;
-  line-height:1.8;
-  animation:fade 1s ease;
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
 }
 
-.final{
-  font-size:2.5rem;
-  animation:fade 1.2s ease;
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+button {
+  margin-top: 25px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d88;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #ff1a66;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
+
 </head>
 <body>
 
-<!-- PAGE 1 -->
-<div class="page active" id="p1">
-  <h1>Hi Sahithi ❤️</h1>
-  <p>
-    I made something small…<br>
-    but it carries something big.
-    <br><br>
-    Ready?
-  </p>
-  <button onclick="go(2)">Start 💕</button>
-</div>
-
-<!-- PAGE 2 -->
-<div class="page" id="p2">
-  <h1>Close your eyes for 3 seconds ✨</h1>
-  <p>3... 2... 1...</p>
-  <button onclick="go(3)">Okay ❤️</button>
-</div>
-
-<!-- PAGE 3 -->
-<div class="page" id="p3">
-  <h1>A Letter For You 💌</h1>
-  <div class="envelope" onclick="openLetter()">
-    Tap to open
-    <div class="letter" id="letter">
-      I don’t know the exact moment you became this important.
-      <br><br>
-      But now even normal days feel special,
-      because you’re in them.
-      <br><br>
-      If love is choosing someone without a reason…
-      <br>
-      then I choose you.
-    </div>
-  </div>
-  <button onclick="go(4)">One last thing</button>
-</div>
-
-<!-- PAGE 4 -->
-<div class="page" id="p4">
-  <h1>Will you stay with me forever? ❤️</h1>
-  <button onclick="yes()">Yes 💖</button>
-  <button class="no" onmouseover="move(this)">No 💔</button>
-</div>
-
-<!-- FINAL PAGE -->
-<div class="page" id="p5">
-  <div class="final">
-    You just made me the happiest ❤️<br><br>
-    I love you, Sahithi.
+<div class="container">
+  <div class="card">
+    <h1>For My Sahithi ❤️</h1>
+    <p>
+      Even without a wallpaper image, this page now has a smooth animated
+      romantic background with glowing effect.
+    </p>
+    <button>Always Yours</button>
   </div>
 </div>
-
-<script>
-function go(n){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('p'+n).classList.add('active');
-}
-
-function openLetter(){
-  document.getElementById('letter').style.display='block';
-}
-
-function yes(){
-  go(5);
-}
-
-function move(btn){
-  btn.style.left=Math.random()*80+"vw";
-  btn.style.top=Math.random()*80+"vh";
-}
-
-function heart(){
-  const h=document.createElement('div');
-  h.className='heart';
-  h.innerText=['❤️','💖','💕','🌹'][Math.floor(Math.random()*4)];
-  h.style.left=Math.random()*100+'vw';
-  h.style.animationDuration=4+Math.random()*5+'s';
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),9000);
-}
-setInterval(heart,450);
-</script>
 
 </body>
 </html>
