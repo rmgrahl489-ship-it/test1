@@ -3,245 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For My Sahithi ❤️</title>
+  <title>Hey My Wife ✨</title>
+
   <style>
     :root{
-      --bg1:#1a0a14;
-      --bg2:#4a1428;
-      --card: rgba(255,255,255,0.10);
-      --card2: rgba(255,255,255,0.14);
-      --text: #ffffff;
-      --muted: rgba(255,255,255,0.86);
-      --pink:#ff4d88;
-      --pink2:#ff1a66;
-      --gold:#ffd6e5;
-      --shadow: 0 18px 45px rgba(0,0,0,0.45);
-      --ring: 0 0 0 3px rgba(255,77,136,0.25);
+      --pink:#ff5aa5;
+      --pink2:#ff3f95;
+      --white: rgba(255,255,255,0.95);
+      --soft: rgba(255,255,255,0.80);
+      --shadow: 0 18px 50px rgba(0,0,0,0.45);
     }
 
-    *{box-sizing:border-box; margin:0; padding:0;}
+    *{box-sizing:border-box;margin:0;padding:0}
     body{
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      color:var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(900px 600px at 20% 20%, rgba(255,77,136,0.20), transparent 55%),
-                  radial-gradient(900px 600px at 80% 70%, rgba(255,77,136,0.16), transparent 55%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      color: var(--white);
       overflow:hidden;
+      background: #1a0a14;
     }
 
-    /* soft floating sparkles */
-    .sparkle{
+    /* Background image from URL (works on hosting) */
+    .bg{
       position:fixed;
       inset:0;
-      pointer-events:none;
-      z-index:0;
-      opacity:0.65;
       background:
-        radial-gradient(2px 2px at 15% 25%, rgba(255,255,255,0.55) 50%, transparent 52%),
-        radial-gradient(2px 2px at 35% 70%, rgba(255,255,255,0.45) 50%, transparent 52%),
-        radial-gradient(2px 2px at 55% 35%, rgba(255,255,255,0.50) 50%, transparent 52%),
-        radial-gradient(2px 2px at 75% 55%, rgba(255,255,255,0.45) 50%, transparent 52%),
-        radial-gradient(2px 2px at 88% 20%, rgba(255,255,255,0.50) 50%, transparent 52%);
-      filter: blur(0.2px);
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("https://upload.wikimedia.org/wikipedia/commons/1/19/RAMA_SITA_-OIL_PAINTING_BY_RAJASEKHARAN.jpg")
+        center/cover no-repeat;
+      transform: scale(1.02);
+      filter: saturate(1.05);
+      z-index:-2;
+    }
+
+    /* soft vignette */
+    .bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08), transparent 55%),
+        radial-gradient(circle at 50% 90%, rgba(255,90,165,0.12), transparent 50%),
+        radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.45) 100%);
     }
 
     .wrap{
-      width:min(900px, 94vw);
-      padding: 18px;
-      z-index:1;
+      width:min(900px, 92vw);
+      text-align:center;
+      padding: 28px 18px;
     }
 
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:14px;
+    h1{
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: rgba(255,210,230,0.98);
+      text-shadow: 0 6px 24px rgba(0,0,0,0.45);
+      margin-bottom: 18px;
     }
 
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-    .brand h1{
-      font-size: clamp(22px, 3vw, 34px);
-      letter-spacing:0.3px;
-      line-height:1.1;
-    }
-    .brand p{
-      color: var(--muted);
-      font-size: 13px;
+    .msg{
+      font-size: clamp(18px, 2.3vw, 28px);
+      line-height: 1.85;
+      color: var(--soft);
+      text-shadow: 0 4px 18px rgba(0,0,0,0.55);
+      margin: 0 auto 28px;
+      max-width: 820px;
     }
 
-    .toggle{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 999px;
-      padding: 8px 10px;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.20);
-      user-select:none;
-    }
-    .toggle span{
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .switch{
-      width: 46px;
-      height: 26px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 999px;
-      position:relative;
-      cursor:pointer;
-      outline:none;
-    }
-    .knob{
-      width: 22px;
-      height: 22px;
-      background: white;
-      border-radius: 999px;
-      position:absolute;
-      top: 1px;
-      left: 1px;
-      transition: transform 200ms ease;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 14px;
-    }
-    @media (max-width: 820px){
-      .grid{grid-template-columns:1fr;}
-    }
-
-    .card{
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 18px;
-      backdrop-filter: blur(12px);
-    }
-
-    .card h2{
-      font-size: 18px;
-      margin-bottom: 8px;
-      letter-spacing:0.2px;
-    }
-    .card p{
-      color: var(--muted);
-      line-height:1.55;
-      font-size: 14px;
-      margin-bottom: 14px;
-    }
-
-    .big{
-      padding: 22px;
-    }
-    .big .hero{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom: 14px;
-    }
-    .badge{
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 10px 12px;
-      border-radius: 16px;
-      min-width: 220px;
-    }
-    .badge .line1{font-weight:700;}
-    .badge .line2{font-size: 12px; color: var(--muted); margin-top:4px;}
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top: 10px;
-    }
+    .gap{ height: 18px; }
 
     .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       border:none;
-      border-radius: 999px;
-      padding: 11px 16px;
       cursor:pointer;
-      font-weight: 650;
-      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
-      outline:none;
-      user-select:none;
+      padding: 18px 44px;
+      border-radius: 999px;
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(180deg, #ff7bbb, var(--pink2));
+      box-shadow: 0 18px 40px rgba(255,65,150,0.25), var(--shadow);
+      transition: transform 180ms ease, filter 180ms ease;
     }
-    .btn:focus{ box-shadow: var(--ring); }
+    .btn:hover{ transform: translateY(-2px); filter: brightness(1.03); }
+    .btn:active{ transform: translateY(0px) scale(0.99); }
 
-    .btn-primary{
+    /* dots */
+    .dots{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      margin-top: 26px;
+    }
+    .dot{
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    }
+    .dot.active{
       background: var(--pink);
-      color: white;
-      box-shadow: 0 10px 22px rgba(255,77,136,0.25);
-    }
-    .btn-primary:hover{ background: var(--pink2); transform: translateY(-1px); }
-
-    .btn-ghost{
-      background: rgba(255,255,255,0.10);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-    .btn-ghost:hover{ background: rgba(255,255,255,0.14); transform: translateY(-1px); }
-
-    .questionBox{
-      position:relative;
-      min-height: 160px;
-      overflow:hidden;
+      transform: scale(1.15);
     }
 
-    .q-title{
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-    .q-sub{
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .yesno{
-      position:relative;
-      height: 80px;
-    }
-
-    #yesBtn{
-      position:absolute;
-      left: 10px;
-      top: 10px;
-    }
-
-    #noBtn{
-      position:absolute;
-      left: 140px;
-      top: 10px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
-      color: white;
-    }
-    #noBtn:hover{ background: rgba(255,255,255,0.14); }
-
-    .status{
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--gold);
-      min-height: 18px;
-    }
-
-    /* Modal */
+    /* Love letter modal */
     .modal{
       position:fixed;
       inset:0;
@@ -249,262 +122,135 @@
       align-items:center;
       justify-content:center;
       padding: 18px;
-      background: rgba(0,0,0,0.55);
-      z-index: 10;
+      background: rgba(0,0,0,0.62);
+      z-index: 5;
     }
     .modal.open{ display:flex; }
+
     .sheet{
-      width:min(760px, 96vw);
-      background: rgba(20,8,14,0.92);
-      border: 1px solid rgba(255,255,255,0.16);
+      width:min(760px, 95vw);
       border-radius: 22px;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.55);
       overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(18, 7, 12, 0.92);
       backdrop-filter: blur(10px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.60);
     }
     .sheetTop{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:10px;
       padding: 14px 16px;
       background: rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.12);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
-    .sheetTop strong{ letter-spacing:0.2px; }
+    .sheetTop strong{ color: rgba(255,210,230,0.95); letter-spacing:0.3px; }
     .close{
       border:none;
-      background: rgba(255,255,255,0.10);
-      color:white;
-      border:1px solid rgba(255,255,255,0.14);
+      padding: 9px 12px;
       border-radius: 999px;
-      padding: 8px 12px;
       cursor:pointer;
+      color: white;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
     }
     .close:hover{ background: rgba(255,255,255,0.14); }
 
     .letter{
       padding: 18px 18px 22px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.92);
-    }
-    .letter h3{
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-    .letter .meta{
-      font-size: 12px;
-      color: rgba(255,255,255,0.70);
-      margin-bottom: 12px;
-    }
-    .letter p{
-      margin: 10px 0;
       color: rgba(255,255,255,0.90);
+      line-height: 1.75;
+      font-size: 16px;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
     }
-    .sig{
-      margin-top: 14px;
-      font-weight: 700;
-      color: #ffd6e5;
-    }
+    .letter h3{ margin-bottom: 8px; color: rgba(255,210,230,0.95); }
+    .letter .meta{ font-size: 12px; color: rgba(255,255,255,0.70); margin-bottom: 12px; }
+    .sig{ margin-top: 14px; font-weight: 800; color: rgba(255,210,230,0.95); }
 
-    /* “romantic mode” */
-    body.romantic{
-      background: radial-gradient(900px 600px at 20% 20%, rgba(255,170,210,0.28), transparent 55%),
-                  radial-gradient(900px 600px at 80% 70%, rgba(255,77,136,0.22), transparent 55%),
-                  linear-gradient(135deg, #120612, #6a1638);
+    @media (max-width: 520px){
+      .btn{ padding: 16px 28px; }
+      .dot{ width: 12px; height: 12px; }
     }
-    body.romantic .card{ background: var(--card2); }
-    body.romantic .knob{ transform: translateX(20px); }
   </style>
 </head>
 
 <body>
-  <div class="sparkle"></div>
+  <div class="bg"></div>
 
   <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <h1>For My Sahithi ❤️</h1>
-        <p>A tiny page with a big message.</p>
-      </div>
+    <h1>✨ Hey My Wife ✨</h1>
 
-      <div class="toggle" title="Toggle extra romantic mode">
-        <span>Soft</span>
-        <button class="switch" id="modeSwitch" aria-label="Toggle romantic mode">
-          <span class="knob"></span>
-        </button>
-        <span>Extra</span>
-      </div>
+    <div class="msg">
+      <div>I'm waiting for you here...</div>
+      <div>In this new place, in this new country.</div>
+
+      <div class="gap"></div>
+
+      <div>Every day without you feels incomplete.</div>
+      <div>But I know soon, you'll be here with me.</div>
     </div>
 
-    <div class="grid">
-      <!-- Left: main -->
-      <div class="card big">
-        <div class="hero">
-          <div>
-            <h2 class="q-title">Quick question…</h2>
-            <div class="q-sub">Be honest 😌 (No button is a little… shy)</div>
-          </div>
-          <div class="badge">
-            <div class="line1">Sahithi × You</div>
-            <div class="line2">A safe place for cute answers</div>
-          </div>
-        </div>
+    <button class="btn" id="missBtn">I Miss You 💞</button>
 
-        <div class="card questionBox" style="background: rgba(255,255,255,0.06); border-radius:18px;">
-          <h2 style="font-size:18px; margin-bottom:8px;">Do you like me? 🥺</h2>
-          <p style="margin-bottom:10px;">Tap “Yes” if you do. If you try “No”… it will run away 😄</p>
-
-          <div class="yesno" id="arena">
-            <button class="btn btn-primary" id="yesBtn">Yes 💗</button>
-            <button class="btn" id="noBtn">No 🙈</button>
-          </div>
-
-          <div class="status" id="status"></div>
-
-          <div class="actions">
-            <button class="btn btn-ghost" id="openLetter">Open Love Letter 💌</button>
-            <button class="btn btn-ghost" id="resetBtn">Reset 🔄</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: small info card -->
-      <div class="card">
-        <h2>Little Note</h2>
-        <p>
-          This is a cute “yes-only” question, and a love letter you can open anytime.
-          If you want, I can add hearts, music, or a memory gallery later.
-        </p>
-        <p style="font-size:12px; opacity:0.85;">
-          Tip: Use the toggle on top right for an extra-romantic vibe.
-        </p>
-      </div>
+    <div class="dots" aria-label="carousel indicators">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
   </div>
 
   <!-- Love Letter Modal -->
   <div class="modal" id="modal">
-    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <div class="sheet" role="dialog" aria-modal="true">
       <div class="sheetTop">
-        <strong id="letterTitle">Love Letter 💌</strong>
-        <button class="close" id="closeModal">Close ✕</button>
+        <strong>Love Letter 💌</strong>
+        <button class="close" id="closeBtn">Close ✕</button>
       </div>
       <div class="letter">
-        <div class="meta">To: <b>Sahithi</b> • From: <b>Me</b></div>
-        <h3>My favorite person,</h3>
+        <div class="meta">To: <b>My Wife</b> • From: <b>Your Husband</b></div>
+        <h3>My love,</h3>
         <p>
-          I don’t know how to say this in one line—because you’re not a one-line feeling.
-          You’re comfort, laughter, calm, and that quiet happiness that stays even after the day ends.
+          I miss you in the smallest moments — when I see something beautiful and my first thought is,
+          “She should be here with me.”
         </p>
         <p>
-          If I had one wish, it would be to keep choosing you—again and again—through small moments,
-          big dreams, and everything in between.
+          This place feels new… but my heart feels familiar — because it has always been yours.
+          I’m counting the days until we’re together again, living our little life side by side.
         </p>
         <p>
-          So yes… I like you. A lot. And I’m really happy you exist.
+          Until then, remember: you are my peace, my home, and my favorite person — always.
         </p>
-        <div class="sig">Always yours ❤️</div>
+        <div class="sig">Forever yours 💗</div>
       </div>
     </div>
   </div>
 
-<script>
-  const noBtn = document.getElementById('noBtn');
-  const yesBtn = document.getElementById('yesBtn');
-  const arena = document.getElementById('arena');
-  const statusEl = document.getElementById('status');
-  const openLetter = document.getElementById('openLetter');
-  const resetBtn = document.getElementById('resetBtn');
+  <script>
+    // open/close letter
+    const modal = document.getElementById("modal");
+    document.getElementById("missBtn").addEventListener("click", () => {
+      modal.classList.add("open");
+    });
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      modal.classList.remove("open");
+    });
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("open");
+    });
 
-  const modal = document.getElementById('modal');
-  const closeModal = document.getElementById('closeModal');
-
-  const modeSwitch = document.getElementById('modeSwitch');
-
-  let dodges = 0;
-
-  function setStatus(msg){
-    statusEl.textContent = msg;
-  }
-
-  function randomPosWithinArena(btn){
-    const pad = 10;
-    const a = arena.getBoundingClientRect();
-    const b = btn.getBoundingClientRect();
-
-    const maxX = Math.max(pad, (a.width - b.width - pad));
-    const maxY = Math.max(pad, (a.height - b.height - pad));
-
-    const x = Math.floor(Math.random() * maxX);
-    const y = Math.floor(Math.random() * maxY);
-
-    btn.style.left = x + 'px';
-    btn.style.top  = y + 'px';
-  }
-
-  function dodge(){
-    dodges++;
-    randomPosWithinArena(noBtn);
-
-    const lines = [
-      "Nice try 😄",
-      "Nope 🙈",
-      "It ran away!",
-      "Try again… if you can 😏",
-      "Not today 😌"
-    ];
-    setStatus(lines[Math.min(lines.length-1, Math.floor(Math.random()*lines.length))]);
-
-    if (dodges >= 6){
-      setStatus("Okay okay… the ‘No’ button is officially unavailable 😌💗");
-      noBtn.disabled = true;
-      noBtn.style.opacity = "0.6";
-      noBtn.style.cursor = "not-allowed";
-    }
-  }
-
-  // Make "No" hard to click: move on hover/touch
-  noBtn.addEventListener('mouseenter', dodge);
-  noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); dodge(); }, {passive:false});
-
-  yesBtn.addEventListener('click', () => {
-    setStatus("Aww 🥹💗 I knew it! Open the love letter?");
-    openLetter.focus();
-  });
-
-  // Letter modal
-  openLetter.addEventListener('click', () => modal.classList.add('open'));
-  closeModal.addEventListener('click', () => modal.classList.remove('open'));
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.remove('open');
-  });
-
-  // Reset
-  resetBtn.addEventListener('click', () => {
-    dodges = 0;
-    noBtn.disabled = false;
-    noBtn.style.opacity = "1";
-    noBtn.style.cursor = "pointer";
-    noBtn.style.left = "140px";
-    noBtn.style.top = "10px";
-    setStatus("");
-    modal.classList.remove('open');
-  });
-
-  // Toggle romantic mode
-  modeSwitch.addEventListener('click', () => {
-    document.body.classList.toggle('romantic');
-  });
-
-  // Make sure no button stays within arena after resize
-  window.addEventListener('resize', () => {
-    // If it was moved before, keep it within bounds
-    const left = parseInt(noBtn.style.left || "140", 10);
-    const top = parseInt(noBtn.style.top || "10", 10);
-    noBtn.style.left = isNaN(left) ? "140px" : noBtn.style.left;
-    noBtn.style.top  = isNaN(top) ? "10px" : noBtn.style.top;
-  });
-</script>
+    // simple dot animation (just for vibe)
+    const dots = Array.from(document.querySelectorAll(".dot"));
+    let i = 0;
+    setInterval(() => {
+      dots.forEach(d => d.classList.remove("active"));
+      dots[i].classList.add("active");
+      i = (i + 1) % dots.length;
+    }, 1200);
+  </script>
 </body>
 </html>
