@@ -1,111 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Sahithi ❤️</title>
+    <title>For My Sahithi ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a0a14, #4a1428);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+        }
 
-body {
-  font-family: 'Segoe UI', serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  color: white;
+        h1 {
+            margin-bottom: 15px;
+        }
 
-  /* === BEAUTIFUL ANIMATED GRADIENT BACKGROUND === */
-  background: linear-gradient(-45deg, #1a0a14, #4a1428, #2d0a1f, #6a1b3a);
-  background-size: 400% 400%;
-  animation: gradientMove 12s ease infinite;
-}
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
 
-/* Soft glowing overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 30% 40%, rgba(255,0,120,0.15), transparent 40%),
-    radial-gradient(circle at 70% 60%, rgba(255,0,90,0.15), transparent 40%);
-  z-index: -1;
-}
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #ff4d88;
+            color: white;
+            cursor: pointer;
+        }
 
-/* Glass Card */
-.container {
-  text-align: center;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 20px;
-  max-width: 600px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-  animation: fadeIn 1.2s ease;
-}
-
-h1 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-button {
-  margin-top: 25px;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 30px;
-  background: #ff4d88;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-button:hover {
-  background: #ff1a66;
-  transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
-
+        button:hover {
+            background-color: #ff1a66;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="card">
+<div class="card">
     <h1>For My Sahithi ❤️</h1>
     <p>
-      Even without a wallpaper image, this page now has a smooth animated
-      romantic background with glowing effect.
+        Even without a wallpaper image, this page now has a soft romantic look
+        that perfectly suits our beautiful moment.
     </p>
     <button>Always Yours</button>
-  </div>
 </div>
 
 </body>
