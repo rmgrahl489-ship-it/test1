@@ -1,63 +1,510 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>For My Sahithi ❤️</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1a0a14, #4a1428);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For My Sahithi ❤️</title>
+  <style>
+    :root{
+      --bg1:#1a0a14;
+      --bg2:#4a1428;
+      --card: rgba(255,255,255,0.10);
+      --card2: rgba(255,255,255,0.14);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.86);
+      --pink:#ff4d88;
+      --pink2:#ff1a66;
+      --gold:#ffd6e5;
+      --shadow: 0 18px 45px rgba(0,0,0,0.45);
+      --ring: 0 0 0 3px rgba(255,77,136,0.25);
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-        }
+    *{box-sizing:border-box; margin:0; padding:0;}
+    body{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 600px at 20% 20%, rgba(255,77,136,0.20), transparent 55%),
+                  radial-gradient(900px 600px at 80% 70%, rgba(255,77,136,0.16), transparent 55%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow:hidden;
+    }
 
-        h1 {
-            margin-bottom: 15px;
-        }
+    /* soft floating sparkles */
+    .sparkle{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:0.65;
+      background:
+        radial-gradient(2px 2px at 15% 25%, rgba(255,255,255,0.55) 50%, transparent 52%),
+        radial-gradient(2px 2px at 35% 70%, rgba(255,255,255,0.45) 50%, transparent 52%),
+        radial-gradient(2px 2px at 55% 35%, rgba(255,255,255,0.50) 50%, transparent 52%),
+        radial-gradient(2px 2px at 75% 55%, rgba(255,255,255,0.45) 50%, transparent 52%),
+        radial-gradient(2px 2px at 88% 20%, rgba(255,255,255,0.50) 50%, transparent 52%);
+      filter: blur(0.2px);
+    }
 
-        p {
-            font-size: 16px;
-            line-height: 1.5;
-        }
+    .wrap{
+      width:min(900px, 94vw);
+      padding: 18px;
+      z-index:1;
+    }
 
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            background-color: #ff4d88;
-            color: white;
-            cursor: pointer;
-        }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
 
-        button:hover {
-            background-color: #ff1a66;
-        }
-    </style>
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .brand h1{
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing:0.3px;
+      line-height:1.1;
+    }
+    .brand p{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .toggle{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 8px 10px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.20);
+      user-select:none;
+    }
+    .toggle span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .switch{
+      width: 46px;
+      height: 26px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      position:relative;
+      cursor:pointer;
+      outline:none;
+    }
+    .knob{
+      width: 22px;
+      height: 22px;
+      background: white;
+      border-radius: 999px;
+      position:absolute;
+      top: 1px;
+      left: 1px;
+      transition: transform 200ms ease;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+    }
+    @media (max-width: 820px){
+      .grid{grid-template-columns:1fr;}
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(12px);
+    }
+
+    .card h2{
+      font-size: 18px;
+      margin-bottom: 8px;
+      letter-spacing:0.2px;
+    }
+    .card p{
+      color: var(--muted);
+      line-height:1.55;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .big{
+      padding: 22px;
+    }
+    .big .hero{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom: 14px;
+    }
+    .badge{
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 10px 12px;
+      border-radius: 16px;
+      min-width: 220px;
+    }
+    .badge .line1{font-weight:700;}
+    .badge .line2{font-size: 12px; color: var(--muted); margin-top:4px;}
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      border:none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      cursor:pointer;
+      font-weight: 650;
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+      outline:none;
+      user-select:none;
+    }
+    .btn:focus{ box-shadow: var(--ring); }
+
+    .btn-primary{
+      background: var(--pink);
+      color: white;
+      box-shadow: 0 10px 22px rgba(255,77,136,0.25);
+    }
+    .btn-primary:hover{ background: var(--pink2); transform: translateY(-1px); }
+
+    .btn-ghost{
+      background: rgba(255,255,255,0.10);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+    .btn-ghost:hover{ background: rgba(255,255,255,0.14); transform: translateY(-1px); }
+
+    .questionBox{
+      position:relative;
+      min-height: 160px;
+      overflow:hidden;
+    }
+
+    .q-title{
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .q-sub{
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .yesno{
+      position:relative;
+      height: 80px;
+    }
+
+    #yesBtn{
+      position:absolute;
+      left: 10px;
+      top: 10px;
+    }
+
+    #noBtn{
+      position:absolute;
+      left: 140px;
+      top: 10px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: white;
+    }
+    #noBtn:hover{ background: rgba(255,255,255,0.14); }
+
+    .status{
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--gold);
+      min-height: 18px;
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      background: rgba(0,0,0,0.55);
+      z-index: 10;
+    }
+    .modal.open{ display:flex; }
+    .sheet{
+      width:min(760px, 96vw);
+      background: rgba(20,8,14,0.92);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 22px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.55);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .sheetTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .sheetTop strong{ letter-spacing:0.2px; }
+    .close{
+      border:none;
+      background: rgba(255,255,255,0.10);
+      color:white;
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor:pointer;
+    }
+    .close:hover{ background: rgba(255,255,255,0.14); }
+
+    .letter{
+      padding: 18px 18px 22px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.92);
+    }
+    .letter h3{
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .letter .meta{
+      font-size: 12px;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 12px;
+    }
+    .letter p{
+      margin: 10px 0;
+      color: rgba(255,255,255,0.90);
+    }
+    .sig{
+      margin-top: 14px;
+      font-weight: 700;
+      color: #ffd6e5;
+    }
+
+    /* “romantic mode” */
+    body.romantic{
+      background: radial-gradient(900px 600px at 20% 20%, rgba(255,170,210,0.28), transparent 55%),
+                  radial-gradient(900px 600px at 80% 70%, rgba(255,77,136,0.22), transparent 55%),
+                  linear-gradient(135deg, #120612, #6a1638);
+    }
+    body.romantic .card{ background: var(--card2); }
+    body.romantic .knob{ transform: translateX(20px); }
+  </style>
 </head>
+
 <body>
+  <div class="sparkle"></div>
 
-<div class="card">
-    <h1>For My Sahithi ❤️</h1>
-    <p>
-        Even without a wallpaper image, this page now has a soft romantic look
-        that perfectly suits our beautiful moment.
-    </p>
-    <button>Always Yours</button>
-</div>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <h1>For My Sahithi ❤️</h1>
+        <p>A tiny page with a big message.</p>
+      </div>
 
+      <div class="toggle" title="Toggle extra romantic mode">
+        <span>Soft</span>
+        <button class="switch" id="modeSwitch" aria-label="Toggle romantic mode">
+          <span class="knob"></span>
+        </button>
+        <span>Extra</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Left: main -->
+      <div class="card big">
+        <div class="hero">
+          <div>
+            <h2 class="q-title">Quick question…</h2>
+            <div class="q-sub">Be honest 😌 (No button is a little… shy)</div>
+          </div>
+          <div class="badge">
+            <div class="line1">Sahithi × You</div>
+            <div class="line2">A safe place for cute answers</div>
+          </div>
+        </div>
+
+        <div class="card questionBox" style="background: rgba(255,255,255,0.06); border-radius:18px;">
+          <h2 style="font-size:18px; margin-bottom:8px;">Do you like me? 🥺</h2>
+          <p style="margin-bottom:10px;">Tap “Yes” if you do. If you try “No”… it will run away 😄</p>
+
+          <div class="yesno" id="arena">
+            <button class="btn btn-primary" id="yesBtn">Yes 💗</button>
+            <button class="btn" id="noBtn">No 🙈</button>
+          </div>
+
+          <div class="status" id="status"></div>
+
+          <div class="actions">
+            <button class="btn btn-ghost" id="openLetter">Open Love Letter 💌</button>
+            <button class="btn btn-ghost" id="resetBtn">Reset 🔄</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: small info card -->
+      <div class="card">
+        <h2>Little Note</h2>
+        <p>
+          This is a cute “yes-only” question, and a love letter you can open anytime.
+          If you want, I can add hearts, music, or a memory gallery later.
+        </p>
+        <p style="font-size:12px; opacity:0.85;">
+          Tip: Use the toggle on top right for an extra-romantic vibe.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Love Letter Modal -->
+  <div class="modal" id="modal">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+      <div class="sheetTop">
+        <strong id="letterTitle">Love Letter 💌</strong>
+        <button class="close" id="closeModal">Close ✕</button>
+      </div>
+      <div class="letter">
+        <div class="meta">To: <b>Sahithi</b> • From: <b>Me</b></div>
+        <h3>My favorite person,</h3>
+        <p>
+          I don’t know how to say this in one line—because you’re not a one-line feeling.
+          You’re comfort, laughter, calm, and that quiet happiness that stays even after the day ends.
+        </p>
+        <p>
+          If I had one wish, it would be to keep choosing you—again and again—through small moments,
+          big dreams, and everything in between.
+        </p>
+        <p>
+          So yes… I like you. A lot. And I’m really happy you exist.
+        </p>
+        <div class="sig">Always yours ❤️</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const arena = document.getElementById('arena');
+  const statusEl = document.getElementById('status');
+  const openLetter = document.getElementById('openLetter');
+  const resetBtn = document.getElementById('resetBtn');
+
+  const modal = document.getElementById('modal');
+  const closeModal = document.getElementById('closeModal');
+
+  const modeSwitch = document.getElementById('modeSwitch');
+
+  let dodges = 0;
+
+  function setStatus(msg){
+    statusEl.textContent = msg;
+  }
+
+  function randomPosWithinArena(btn){
+    const pad = 10;
+    const a = arena.getBoundingClientRect();
+    const b = btn.getBoundingClientRect();
+
+    const maxX = Math.max(pad, (a.width - b.width - pad));
+    const maxY = Math.max(pad, (a.height - b.height - pad));
+
+    const x = Math.floor(Math.random() * maxX);
+    const y = Math.floor(Math.random() * maxY);
+
+    btn.style.left = x + 'px';
+    btn.style.top  = y + 'px';
+  }
+
+  function dodge(){
+    dodges++;
+    randomPosWithinArena(noBtn);
+
+    const lines = [
+      "Nice try 😄",
+      "Nope 🙈",
+      "It ran away!",
+      "Try again… if you can 😏",
+      "Not today 😌"
+    ];
+    setStatus(lines[Math.min(lines.length-1, Math.floor(Math.random()*lines.length))]);
+
+    if (dodges >= 6){
+      setStatus("Okay okay… the ‘No’ button is officially unavailable 😌💗");
+      noBtn.disabled = true;
+      noBtn.style.opacity = "0.6";
+      noBtn.style.cursor = "not-allowed";
+    }
+  }
+
+  // Make "No" hard to click: move on hover/touch
+  noBtn.addEventListener('mouseenter', dodge);
+  noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); dodge(); }, {passive:false});
+
+  yesBtn.addEventListener('click', () => {
+    setStatus("Aww 🥹💗 I knew it! Open the love letter?");
+    openLetter.focus();
+  });
+
+  // Letter modal
+  openLetter.addEventListener('click', () => modal.classList.add('open'));
+  closeModal.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+
+  // Reset
+  resetBtn.addEventListener('click', () => {
+    dodges = 0;
+    noBtn.disabled = false;
+    noBtn.style.opacity = "1";
+    noBtn.style.cursor = "pointer";
+    noBtn.style.left = "140px";
+    noBtn.style.top = "10px";
+    setStatus("");
+    modal.classList.remove('open');
+  });
+
+  // Toggle romantic mode
+  modeSwitch.addEventListener('click', () => {
+    document.body.classList.toggle('romantic');
+  });
+
+  // Make sure no button stays within arena after resize
+  window.addEventListener('resize', () => {
+    // If it was moved before, keep it within bounds
+    const left = parseInt(noBtn.style.left || "140", 10);
+    const top = parseInt(noBtn.style.top || "10", 10);
+    noBtn.style.left = isNaN(left) ? "140px" : noBtn.style.left;
+    noBtn.style.top  = isNaN(top) ? "10px" : noBtn.style.top;
+  });
+</script>
 </body>
 </html>
